@@ -1,4 +1,9 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 'use strict';
+
 var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
@@ -27,6 +32,18 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        copyright: {
+            app: {
+                options: {
+                    pattern: /This Source Code Form is subject to the terms of the Mozilla Public/
+                },
+                src: [
+                    '*.js',
+                    '{,<%= yeoman.app %>/**/}*.js',
+                    '!<%= yeoman.app %>/bower_components/**'
+                ]
+            }
+        },
         watch: {
             options: {
                 nospawn: true,
