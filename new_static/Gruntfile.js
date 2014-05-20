@@ -185,6 +185,21 @@ module.exports = function (grunt) {
       ]
     },
 
+    // JSONLINT TASK
+    jsonlint: {
+      config: [
+        '.bowerrc',
+        '.csslintrc',
+        '.jscsrc',
+        '.jshintrc',
+        '.yo-rc.json'
+      ],
+      app: [
+        '{,<%= yeoman.app %>/**/,<%= yeoman.dist %>/**/,<%= yeoman.test %>/**/}*.json',
+        '!<%= yeoman.app %>/bower_components/**'
+      ]
+    },
+
     // OPEN TASK
     open: {
       server: {
@@ -329,7 +344,8 @@ module.exports = function (grunt) {
   // LINT TASK
   grunt.registerTask('lint', [
     'jscs',
-    'jshint'
+    'jshint',
+    'jsonlint'
   ]);
 
   // SERVE TASK
